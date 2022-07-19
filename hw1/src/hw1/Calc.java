@@ -10,10 +10,10 @@ public class Calc {
             if (operator.equals("stop")) {
                 System.exit(1);
             }
-            System.out.println("enter first number");
-            double a = sc.nextDouble(); // вводим первый операнд
-            System.out.println("enter second number");
-            double b = sc.nextDouble(); // вводим второй операнд
+
+            double a = inputNumber(sc); // Вводим первый операнд
+            double b = inputNumber(sc); // Вводим вторый операнд
+
             switch (operator) {
                 case ("+"):
                     System.out.println(a + " + " + b + " = " + (a + b));
@@ -26,10 +26,13 @@ public class Calc {
                     break;
                 case ("/"):
                     try {
+                        if (a / b == Double.NEGATIVE_INFINITY || a / b == Double.POSITIVE_INFINITY) {
+                            throw new ArithmeticException();
+                        }
                         System.out.println(a + " / " + b + " = " + (a / b));
                         break;
-                    } catch (ArithmeticException e) {
-                        System.out.println("Division by zero");
+                    } catch (ArithmeticException ae) {
+                        System.out.println("ArithmeticException: division by zero!");
                         break;
                     }
                 default:
@@ -39,4 +42,14 @@ public class Calc {
             System.out.println("_____________________________");
         }
     }
-}
+    public static double inputNumber(Scanner sc) {
+        System.out.println("Enter a number: ");
+        if(sc.hasNextDouble()) {
+            return sc.nextDouble();
+        } else {
+            sc.next();
+            System.out.println("That is not a number");
+            return inputNumber(sc);
+        }
+    }
+ }
