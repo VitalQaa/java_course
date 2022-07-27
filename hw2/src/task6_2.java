@@ -27,9 +27,9 @@ public class task6_2 {
         }
 
         String[] strings = newStr.toString().split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");
-        for (int i = 1; i < strings.length; i+=2) {
-            n = Integer.parseInt(strings[i-1]);
-            System.out.print(strings[i].repeat(n));
+        for (int index = 1; index < strings.length; index+=2) {
+            n = Integer.parseInt(strings[index-1]);
+            System.out.print(strings[index].repeat(n));
             newLine+=n;
             if (newLine > 40) {
                 System.out.println();
